@@ -1,517 +1,660 @@
-<!DOCTYPE HTML>
-<!--
-	Paradigm Shift by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<style>
-			/* 1. TÜM ARKA PLANLARI SİMSİYAH YAP VE TURKUAZ GRADYANLARI SİL */
-			body, #wrapper, .panel, #intro, section, .intro-content {
-				background-color: #000000 !important;
-				background-image: none !important;
-			}
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LogiDevops — Akıllı Lojistik Çözümleri</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0d0d0d;
+    --dark: #141414;
+    --card: #1a1a1a;
+    --border: #2a2a2a;
+    --green: #aaff00;
+    --green-dim: rgba(170,255,0,0.12);
+    --green-glow: rgba(170,255,0,0.25);
+    --white: #ffffff;
+    --gray: #888;
+    --light: #cccccc;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
 
-			/* 2. O TURKUAZ GEOMETRİK ÇİZGİLERİ VE FİLTRELERİ TAMAMEN SİYAHLA BOĞ */
-			.image.filtered:after, 
-			#intro:after, 
-			.panel:after, 
-			#wrapper:after {
-				background-color: rgba(0, 0, 0, 0.9) !important; /* %90 siyah perde */
-				background-image: none !important; /* Turkuaz gradyan katmanını uçurur */
-				mix-blend-mode: multiply !important; /* Rengi tamamen öldürür */
-			}
+  /* NOISE TEXTURE OVERLAY */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.4;
+  }
 
-			/* Şablonun orijinal çizgi görsellerini (overlay) tamamen gizle veya karart */
-			.image.filtered:before {
-				display: none !important;
-			}
-			
-			/* 3. BAŞLIKLARI PARLAK TERMİNAL YEŞİLİ YAP */
-			h1, h2, h3, h4, strong, .intro-content h1, [class*="color"] h1, [class*="color"] h2 {
-				color: #00ff66 !important;
-				text-shadow: 0 0 10px rgba(0,255,102,0.4) !important; /* Neon siber efekti */
-			}
-			
-			/* 4. METİNLERİ VE BAĞLANTILARI AÇIK YEŞİL YAP */
-			p, .section-desc, span, li, a, .copyright, .copyright a {
-				color: #99ffbb !important;
-			}
-			
-			/* 5. BUTONLARI SİYAH-YEŞİL TERMİNAL BUTONUNA ÇEVİR */
-			.button, .button.primary, .button.color1 {
-				background-color: #00ff66 !important;
-				color: #000000 !important;
-				box-shadow: none !important;
-				border-color: #00ff66 !important;
-			}
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 4rem;
+    background: rgba(13,13,13,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .logo {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    text-decoration: none;
+  }
+  .logo span { color: var(--green); }
+  .logo-logi { color: var(--white); }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--gray);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); }
+  .nav-cta {
+    background: var(--green);
+    color: var(--black);
+    padding: 8px 20px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+    transition: opacity 0.2s;
+  }
+  .nav-cta:hover { opacity: 0.85; }
 
-			.button:hover, .button.primary:hover {
-				background-color: #00cc52 !important;
-				color: #000000 !important;
-			}
-		</style>
-	<head>
-		<title>LogiDevOps | Lojistik ve Operasyonel Süreç Optimizasyonu</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<meta name="description" content="" />
-		<meta name="keywords" content="" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-	</head>
-	<body class="is-preload">
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 8rem 4rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; z-index: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 70% 50%, rgba(170,255,0,0.07) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(170,255,0,0.04) 0%, transparent 60%);
+  }
+  .hero-grid {
+    position: absolute; inset: 0; z-index: 0;
+    background-image:
+      linear-gradient(rgba(170,255,0,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(170,255,0,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 30%, transparent 100%);
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 760px; }
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--green-dim);
+    border: 1px solid rgba(170,255,0,0.3);
+    color: var(--green);
+    font-size: 12px; font-weight: 600;
+    letter-spacing: 0.1em; text-transform: uppercase;
+    padding: 6px 14px; border-radius: 99px;
+    margin-bottom: 2rem;
+  }
+  .hero-badge::before { content: '●'; font-size: 8px; animation: blink 2s infinite; }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+  h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 800;
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    margin-bottom: 1.5rem;
+  }
+  h1 em { color: var(--green); font-style: normal; }
+  .hero-sub {
+    font-size: 1.15rem;
+    color: var(--light);
+    max-width: 520px;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+  .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--green);
+    color: var(--black);
+    padding: 14px 32px;
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px; font-weight: 700;
+    text-decoration: none;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 32px var(--green-glow); }
+  .btn-secondary {
+    background: transparent;
+    color: var(--white);
+    padding: 14px 32px;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    font-size: 15px;
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--green); background: var(--green-dim); }
+  .hero-stats {
+    display: flex; gap: 3rem; margin-top: 4rem;
+    padding-top: 3rem;
+    border-top: 1px solid var(--border);
+  }
+  .hero-stat-num {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2rem; font-weight: 800;
+    color: var(--green);
+  }
+  .hero-stat-lbl { font-size: 13px; color: var(--gray); margin-top: 2px; }
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+  /* SECTIONS */
+  section { padding: 6rem 4rem; }
+  .section-label {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--green);
+    margin-bottom: 1rem;
+  }
+  h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 1.25rem;
+  }
+  .section-sub { font-size: 1rem; color: var(--light); max-width: 500px; font-weight: 300; }
 
-				<!-- Intro -->
-					<section class="intro">
-						<header>
-							<h1>LogiDevOps</h1>
-							<p>Lojistikte Dijital Dönüşüm, Süreç Optimizasyonu ve Yazılım Entegrasyonları</a></p>
-							<ul class="actions">
-								<li><a href="#first" class="arrow scrolly"><span class="label">Next</span></a></li>
-							</ul>
-						</header>
-						<div class="content">
-							<span class="image fill" data-position="center"><img src="images/pic01.jpg" alt="" /></span>
-						</div>
-					</section>
+  /* SERVICES */
+  #hizmetler { background: var(--dark); }
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1px;
+    background: var(--border);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-top: 3rem;
+  }
+  .service-card {
+    background: var(--dark);
+    padding: 2.5rem;
+    transition: background 0.2s;
+    cursor: default;
+  }
+  .service-card:hover { background: var(--card); }
+  .service-icon {
+    width: 48px; height: 48px;
+    background: var(--green-dim);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    margin-bottom: 1.25rem;
+    border: 1px solid rgba(170,255,0,0.2);
+  }
+  .service-card h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem; font-weight: 700;
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.02em;
+  }
+  .service-card p { font-size: 14px; color: var(--gray); line-height: 1.7; }
 
-				<!-- Section -->
-					<section id="first">
-						<header>
-							<h2>Lojistik Operasyonel Destek</h2>
-						</header>
-						<div class="content">
-							<p><strong>Lorem ipsum dolor</strong> sit amet consectetur adipiscing elit. Duis dapibus rutrum facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh porttitor amet fermentum. Nullam venenatis erat id vehicula ultrices sed ultricies condimentum. Magna sed etiam consequat, et lorem adipiscing sed nulla. Volutpat nisl et tempus et dolor libero, feugiat magna tempus, sed et lorem adipiscing.</p>
-							<span class="image main"><img src="images/pic02.jpg" alt="" /></span>
-						</div>
-					</section>
+  /* ABOUT */
+  #hakkimizda {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+  .about-visual {
+    position: relative;
+    height: 420px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: var(--card);
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+  }
+  .about-visual-inner {
+    position: relative; z-index: 1;
+    text-align: center;
+  }
+  .about-glow {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 60% at 50% 50%, rgba(170,255,0,0.1) 0%, transparent 70%);
+  }
+  .big-num {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 6rem; font-weight: 800;
+    color: var(--green);
+    line-height: 1;
+    opacity: 0.9;
+  }
+  .big-num-label {
+    font-size: 14px; color: var(--gray); margin-top: 8px;
+    letter-spacing: 0.05em; text-transform: uppercase;
+  }
+  .about-list { list-style: none; margin-top: 2rem; }
+  .about-list li {
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 15px; color: var(--light);
+    display: flex; align-items: center; gap: 12px;
+  }
+  .about-list li::before {
+    content: '→';
+    color: var(--green);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
 
-				<!-- Section -->
-					<section>
-						<header>
-							<h2>Anlık Raporlama ve Ölçüm</h2>
-						</header>
-						<div class="content">
-							<p><strong>Etiam tristique libero</strong> eu nibh porttitor amet fermentum. Nullam venenatis erat id vehicula ultrices sed ultricies condimentum.</p>
-							<ul class="feature-icons">
-								<li class="icon solid fa-laptop">Consequat tempus</li>
-								<li class="icon solid fa-bolt">Etiam adipiscing</li>
-								<li class="icon solid fa-signal">Libero nullam</li>
-								<li class="icon solid fa-cog">Blandit condimentum</li>
-								<li class="icon solid fa-map-marker-alt">Lorem ipsum dolor</li>
-								<li class="icon solid fa-code">Nibh amet venenatis</li>
-							</ul>
-							<p>Vehicula ultrices sed ultricies condimentum. Magna sed etiam consequat, et lorem adipiscing sed nulla. Volutpat nisl et tempus et dolor libero, feugiat magna tempus, sed et lorem adipiscing.</p>
-						</div>
-					</section>
+  /* BLOG */
+  #blog { background: var(--dark); }
+  .blog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .blog-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: border-color 0.2s, transform 0.2s;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+  .blog-card:hover { border-color: rgba(170,255,0,0.4); transform: translateY(-4px); }
+  .blog-thumb {
+    height: 180px;
+    background: linear-gradient(135deg, #1a1a1a 0%, #111 100%);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .blog-body { padding: 1.5rem; }
+  .blog-tag {
+    display: inline-block;
+    background: var(--green-dim); color: var(--green);
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.08em; text-transform: uppercase;
+    padding: 3px 10px; border-radius: 99px;
+    margin-bottom: 0.75rem;
+    border: 1px solid rgba(170,255,0,0.2);
+  }
+  .blog-card h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem; font-weight: 700;
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.01em;
+  }
+  .blog-card p { font-size: 13px; color: var(--gray); }
+  .blog-date { font-size: 12px; color: var(--gray); margin-top: 1rem; }
 
-				<!-- Section -->
-					<section>
-						<header>
-							<h2>Yurtiçi ve yurtdışı </h2>
-						</header>
-						<div class="content">
-							<p><strong>Integer mollis egestas</strong> nam maximus erat id euismod egestas. Pellentesque sapien ac quam. Lorem ipsum dolor sit nullam.</p>
+  /* CONTACT */
+  #iletisim {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+  .contact-info h2 { margin-bottom: 1rem; }
+  .contact-details { margin-top: 2.5rem; }
+  .contact-item {
+    display: flex; align-items: flex-start; gap: 1rem;
+    padding: 1.25rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .contact-icon {
+    width: 40px; height: 40px; flex-shrink: 0;
+    background: var(--green-dim);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 18px;
+    border: 1px solid rgba(170,255,0,0.2);
+  }
+  .contact-item-label { font-size: 12px; color: var(--gray); text-transform: uppercase; letter-spacing: 0.08em; }
+  .contact-item-val { font-size: 15px; font-weight: 500; margin-top: 2px; }
+  .contact-form { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 2.5rem; }
+  .contact-form h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.2rem; font-weight: 700;
+    margin-bottom: 1.75rem;
+    letter-spacing: -0.02em;
+  }
+  .form-group { margin-bottom: 1.25rem; }
+  label { font-size: 12px; font-weight: 600; color: var(--gray); letter-spacing: 0.05em; text-transform: uppercase; display: block; margin-bottom: 6px; }
+  input, textarea, select {
+    width: 100%;
+    background: var(--dark);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px;
+    padding: 12px 16px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  input:focus, textarea:focus, select:focus { border-color: var(--green); }
+  textarea { resize: vertical; min-height: 120px; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .submit-btn {
+    width: 100%;
+    background: var(--green);
+    color: var(--black);
+    border: none;
+    border-radius: 8px;
+    padding: 14px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px; font-weight: 700;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .submit-btn:hover { opacity: 0.88; transform: translateY(-1px); }
 
-							<!-- Section -->
-								<section>
-									<header>
-										<h3>Erat aliquam</h3>
-										<p>Vehicula ultrices dolor amet ultricies et condimentum. Magna sed etiam consequat, et lorem adipiscing sed dolor sit amet, consectetur amet do eiusmod tempor incididunt  ipsum suspendisse ultrices gravida.</p>
-									</header>
-									<div class="content">
-										<div class="gallery">
-											<a href="images/gallery/fulls/01.jpg" class="landscape"><img src="images/gallery/thumbs/01.jpg" alt="" /></a>
-											<a href="images/gallery/fulls/02.jpg"><img src="images/gallery/thumbs/02.jpg" alt="" /></a>
-											<a href="images/gallery/fulls/03.jpg"><img src="images/gallery/thumbs/03.jpg" alt="" /></a>
-											<a href="images/gallery/fulls/04.jpg" class="landscape"><img src="images/gallery/thumbs/04.jpg" alt="" /></a>
-										</div>
-									</div>
-								</section>
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2.5rem 4rem;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-logo { font-family: 'Montserrat', sans-serif; font-size: 1.1rem; font-weight: 800; }
+  .footer-logo span { color: var(--green); }
+  footer p { font-size: 13px; color: var(--gray); }
+  .footer-links { display: flex; gap: 1.5rem; }
+  .footer-links a { font-size: 13px; color: var(--gray); text-decoration: none; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--green); }
 
-							<!-- Section -->
-								<section>
-									<header>
-										<h3>Nisl consequat</h3>
-										<p>Aenean ornare velit lacus, ac varius enim ullamcorper eu. Proin aliquam sed facilisis ante interdum congue. Integer mollis, nisl amet convallis, porttitor magna ullamcorper, amet mauris. Ut magna finibus nisi nec lacinia ipsum maximus.</p>
-									</header>
-									<div class="content">
-										<div class="gallery">
-											<a href="images/gallery/fulls/05.jpg" class="landscape"><img src="images/gallery/thumbs/05.jpg" alt="" /></a>
-											<a href="images/gallery/fulls/06.jpg"><img src="images/gallery/thumbs/06.jpg" alt="" /></a>
-											<a href="images/gallery/fulls/07.jpg"><img src="images/gallery/thumbs/07.jpg" alt="" /></a>
-										</div>
-									</div>
-								</section>
+  /* ANIMATIONS */
+  .fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-							<!-- Section -->
-								<section>
-									<header>
-										<h3>Lorem gravida</h3>
-										<p>Proin aliquam facilisis ante interdum. Sed nulla amet lorem feugiat tempus aenean ornare velit lacus, ac varius sed enim lorem ullamcorper dolore.  ac varius enim lorem ullamcorper dolore. Proin aliquam facilisis.</p>
-									</header>
-									<div class="content">
-										<div class="gallery">
-											<a href="images/gallery/fulls/08.jpg" class="portrait"><img src="images/gallery/thumbs/08.jpg" alt="" /></a>
-											<a href="images/gallery/fulls/09.jpg" class="portrait"><img src="images/gallery/thumbs/09.jpg" alt="" /></a>
-											<a href="images/gallery/fulls/10.jpg" class="landscape"><img src="images/gallery/thumbs/10.jpg" alt="" /></a>
-										</div>
-									</div>
-								</section>
+  /* MOBILE */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero, section { padding: 5rem 1.5rem 3rem; }
+    #hakkimizda, #iletisim { grid-template-columns: 1fr; gap: 3rem; }
+    .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+    footer { flex-direction: column; text-align: center; padding: 2rem 1.5rem; }
+    .form-grid { grid-template-columns: 1fr; }
+    .about-visual { height: 260px; }
+  }
+</style>
+</head>
+<body>
 
-						</div>
-					</section>
+<!-- NAV -->
+<nav>
+  <a href="#" class="logo"><span style="color:var(--white)">Logi</span><span>Devops</span></a>
+  <ul class="nav-links">
+    <li><a href="#hizmetler">Hizmetler</a></li>
+    <li><a href="#hakkimizda">Hakkımızda</a></li>
+    <li><a href="#blog">Blog</a></li>
+    <li><a href="#iletisim">İletişim</a></li>
+  </ul>
+  <a href="#iletisim" class="nav-cta">Teklif Al</a>
+</nav>
 
-				<!-- Section -->
-					<section>
-						<header>
-							<h2>Duis sed adpiscing veroeros amet</h2>
-						</header>
-						<div class="content">
-							<p><strong>Proin tempus feugiat</strong> sed varius enim lorem ullamcorper dolore aliquam aenean ornare velit lacus, ac varius enim lorem ullamcorper dolore.</p>
-							<ul class="actions">
-								<li><a href="#" class="button primary large">Get Started</a></li>
-								<li><a href="#" class="button large">Learn More</a></li>
-							</ul>
-						</div>
-					</section>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-content fade-in">
+    <div class="hero-badge">Lojistik & DevOps Çözümleri</div>
+    <h1>Tedarik zincirinizi<br><em>akıllı teknoloji</em><br>ile yönetin</h1>
+    <p class="hero-sub">LogiDevops; lojistik operasyonlarınızı dijitalleştiren, otomasyon ve veri odaklı çözümlerle süreçlerinizi hızlandıran teknoloji şirketidir.</p>
+    <div class="hero-btns">
+      <a href="#hizmetler" class="btn-primary">Hizmetlerimiz →</a>
+      <a href="#iletisim" class="btn-secondary">Bize Ulaşın</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="hero-stat-num">500+</div>
+        <div class="hero-stat-lbl">Tamamlanan Proje</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">98%</div>
+        <div class="hero-stat-lbl">Müşteri Memnuniyeti</div>
+      </div>
+      <div>
+        <div class="hero-stat-num">7/24</div>
+        <div class="hero-stat-lbl">Teknik Destek</div>
+      </div>
+    </div>
+  </div>
+</section>
 
-				<!-- Elements -->
-				<!--
-					<section>
-						<header>
-							<h2>Elements</h2>
-						</header>
-						<div class="content">
+<!-- HİZMETLER -->
+<section id="hizmetler">
+  <div class="fade-in">
+    <p class="section-label">Hizmetlerimiz</p>
+    <h2>Lojistiğin her adımında<br>yanınızdayız</h2>
+    <p class="section-sub">Operasyonlarınızı uçtan uca dijitalleştiren, ölçeklenebilir ve entegre çözümler sunuyoruz.</p>
+  </div>
+  <div class="services-grid fade-in">
+    <div class="service-card">
+      <div class="service-icon">🚚</div>
+      <h3>Filo Yönetimi</h3>
+      <p>Araç takibi, rota optimizasyonu ve filo performans analizleriyle nakliye maliyetlerinizi düşürün.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📦</div>
+      <h3>Depo Otomasyonu</h3>
+      <p>Stok yönetimi, barkod entegrasyonu ve otomatik sipariş işleme sistemleriyle depo verimliliğini artırın.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🔗</div>
+      <h3>Tedarik Zinciri Entegrasyonu</h3>
+      <p>ERP, WMS ve TMS sistemlerinizi tek platformda birleştiren API entegrasyonları kuruyoruz.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">📊</div>
+      <h3>Analitik & Raporlama</h3>
+      <p>Gerçek zamanlı veri panelleri ve öngörücü analizlerle operasyonel kararlarınızı güçlendirin.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">⚙️</div>
+      <h3>DevOps & Altyapı</h3>
+      <p>CI/CD pipeline, konteynerizasyon ve cloud altyapısıyla yazılım süreçlerinizi hızlandırın.</p>
+    </div>
+    <div class="service-card">
+      <div class="service-icon">🛡️</div>
+      <h3>Danışmanlık & Destek</h3>
+      <p>Dijital dönüşüm yol haritanızı birlikte çiziyor, 7/24 teknik destek sağlıyoruz.</p>
+    </div>
+  </div>
+</section>
 
-							<section>
-								<header>
-									<h3>Text</h3>
-								</header>
-								<div class="content">
-									<p>This is <b>bold</b> and this is <strong>strong</strong>. This is <i>italic</i> and this is <em>emphasized</em>.
-									This is <sup>superscript</sup> text and this is <sub>subscript</sub> text.
-									This is <u>underlined</u> and this is code: <code>for (;;) { ... }</code>. Finally, <a href="#">this is a link</a>.</p>
-									<hr />
-									<h2>Heading Level 2</h2>
-									<h3>Heading Level 3</h3>
-									<h4>Heading Level 4</h4>
-									<h5>Heading Level 5</h5>
-									<hr />
-									<h5>Blockquote</h5>
-									<blockquote>Fringilla nisl. Donec accumsan interdum nisi, quis tincidunt felis sagittis eget tempus euismod. Vestibulum ante ipsum primis in faucibus vestibulum. Blandit adipiscing eu felis iaculis volutpat ac adipiscing accumsan faucibus. Vestibulum ante ipsum primis in faucibus lorem ipsum dolor sit amet nullam adipiscing eu felis.</blockquote>
-									<h5>Preformatted</h5>
-									<pre><code>i = 0;
+<!-- HAKKIMIZDA -->
+<section id="hakkimizda">
+  <div class="about-visual fade-in">
+    <div class="about-glow"></div>
+    <div class="about-visual-inner">
+      <div class="big-num">10+</div>
+      <div class="big-num-label">Yıllık Deneyim</div>
+    </div>
+  </div>
+  <div class="fade-in">
+    <p class="section-label">Hakkımızda</p>
+    <h2>Teknolojiyi lojistikle<br>buluşturuyoruz</h2>
+    <p class="section-sub">LogiDevops olarak, lojistik sektörünün karmaşık operasyonel zorluklarını teknoloji ile çözmeyi misyon edindik.</p>
+    <ul class="about-list">
+      <li>Sektöre özel yazılım ve otomasyon çözümleri</li>
+      <li>Bulut tabanlı, ölçeklenebilir altyapı</li>
+      <li>Güvenli ve şeffaf veri yönetimi</li>
+      <li>Hızlı uygulama, ölçülebilir sonuçlar</li>
+      <li>Uzman mühendis ve danışman ekibi</li>
+    </ul>
+    <a href="#iletisim" class="btn-primary" style="display:inline-block; margin-top:2rem;">Bizimle Çalışın →</a>
+  </div>
+</section>
 
-while (!deck.isInOrder()) {
-  print 'Iteration ' + i;
-  deck.shuffle();
-  i++;
-}
+<!-- BLOG -->
+<section id="blog">
+  <div class="fade-in">
+    <p class="section-label">Blog</p>
+    <h2>Sektörden içgörüler</h2>
+    <p class="section-sub">Lojistik teknolojileri, otomasyon ve dijital dönüşüm hakkında güncel yazılar.</p>
+  </div>
+  <div class="blog-grid fade-in">
+    <a href="#" class="blog-card">
+      <div class="blog-thumb">🚀</div>
+      <div class="blog-body">
+        <span class="blog-tag">Otomasyon</span>
+        <h3>Depo otomasyonu neden artık bir zorunluluk?</h3>
+        <p>Manuel süreçlerin maliyeti ve otomasyon yatırımının geri dönüş süresi üzerine bir analiz.</p>
+        <div class="blog-date">15 Mayıs 2025</div>
+      </div>
+    </a>
+    <a href="#" class="blog-card">
+      <div class="blog-thumb">📡</div>
+      <div class="blog-body">
+        <span class="blog-tag">Teknoloji</span>
+        <h3>Gerçek zamanlı filo takibinin lojistiğe katkısı</h3>
+        <p>GPS ve IoT entegrasyonuyla nakliye verimliliğini nasıl artırıyorsunuz?</p>
+        <div class="blog-date">2 Mayıs 2025</div>
+      </div>
+    </a>
+    <a href="#" class="blog-card">
+      <div class="blog-thumb">🔄</div>
+      <div class="blog-body">
+        <span class="blog-tag">DevOps</span>
+        <h3>Lojistik yazılımlarında CI/CD: Hız ve güvenilirlik</h3>
+        <p>Kesintisiz deployment süreçleriyle operasyonel sürekliliği nasıl sağlarsınız?</p>
+        <div class="blog-date">18 Nisan 2025</div>
+      </div>
+    </a>
+  </div>
+</section>
 
-print 'Sorted in ' + i + ' iterations.';</code></pre>
-								</div>
-							</section>
+<!-- İLETİŞİM -->
+<section id="iletisim">
+  <div class="contact-info fade-in">
+    <p class="section-label">İletişim</p>
+    <h2>Projenizi<br>konuşalım</h2>
+    <p class="section-sub">Size özel çözüm için formu doldurun veya doğrudan ulaşın — en geç 24 saat içinde geri dönüyoruz.</p>
+    <div class="contact-details">
+      <div class="contact-item">
+        <div class="contact-icon">📧</div>
+        <div>
+          <div class="contact-item-label">E-posta</div>
+          <div class="contact-item-val">info@logidevops.com</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📞</div>
+        <div>
+          <div class="contact-item-label">Telefon</div>
+          <div class="contact-item-val">+90 (212) 000 00 00</div>
+        </div>
+      </div>
+      <div class="contact-item">
+        <div class="contact-icon">📍</div>
+        <div>
+          <div class="contact-item-label">Adres</div>
+          <div class="contact-item-val">İstanbul, Türkiye</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="contact-form fade-in">
+    <h3>Teklif / Bilgi Talebi</h3>
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Ad Soyad</label>
+        <input type="text" placeholder="Adınız">
+      </div>
+      <div class="form-group">
+        <label>Şirket</label>
+        <input type="text" placeholder="Şirket adı">
+      </div>
+    </div>
+    <div class="form-group">
+      <label>E-posta</label>
+      <input type="email" placeholder="email@sirket.com">
+    </div>
+    <div class="form-group">
+      <label>Hizmet</label>
+      <select>
+        <option value="">Hangi hizmeti istiyorsunuz?</option>
+        <option>Filo Yönetimi</option>
+        <option>Depo Otomasyonu</option>
+        <option>Tedarik Zinciri Entegrasyonu</option>
+        <option>Analitik & Raporlama</option>
+        <option>DevOps & Altyapı</option>
+        <option>Danışmanlık</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label>Mesaj</label>
+      <textarea placeholder="Projeniz hakkında kısaca bilgi verin..."></textarea>
+    </div>
+    <button class="submit-btn">Gönder →</button>
+  </div>
+</section>
 
-							<section>
-								<header>
-									<h3>Lists</h3>
-								</header>
-								<div class="content">
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Logi<span>Devops</span></div>
+  <p>© 2025 LogiDevops. Tüm hakları saklıdır.</p>
+  <div class="footer-links">
+    <a href="#hizmetler">Hizmetler</a>
+    <a href="#hakkimizda">Hakkımızda</a>
+    <a href="#blog">Blog</a>
+    <a href="#iletisim">İletişim</a>
+  </div>
+</footer>
 
-									<h4>Unordered</h4>
-									<ul>
-										<li>Dolor pulvinar etiam.</li>
-										<li>Sagittis adipiscing.</li>
-										<li>Felis enim feugiat.</li>
-									</ul>
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1 });
 
-									<h4>Alternate</h4>
-									<ul class="alt">
-										<li>Dolor pulvinar etiam.</li>
-										<li>Sagittis adipiscing.</li>
-										<li>Felis enim feugiat.</li>
-									</ul>
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-									<h4>Ordered</h4>
-									<ol>
-										<li>Dolor pulvinar etiam.</li>
-										<li>Etiam vel felis viverra.</li>
-										<li>Felis enim feugiat.</li>
-										<li>Dolor pulvinar etiam.</li>
-										<li>Etiam vel felis lorem.</li>
-										<li>Felis enim et feugiat.</li>
-									</ol>
-									<h4>Icons</h4>
-									<ul class="icons">
-										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-										<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-										<li><a href="#" class="icon brands fa-github"><span class="label">Github</span></a></li>
-									</ul>
-
-									<h4>Actions</h4>
-									<ul class="actions">
-										<li><a href="#" class="button primary">Default</a></li>
-										<li><a href="#" class="button">Default</a></li>
-									</ul>
-									<ul class="actions stacked">
-										<li><a href="#" class="button primary">Default</a></li>
-										<li><a href="#" class="button">Default</a></li>
-									</ul>
-								</div>
-							</section>
-
-							<section>
-								<header>
-									<h3>Table</h3>
-								</header>
-								<div class="content">
-									<h4>Default</h4>
-									<div class="table-wrapper">
-										<table>
-											<thead>
-												<tr>
-													<th>Name</th>
-													<th>Description</th>
-													<th>Price</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>Item One</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
-													<td>29.99</td>
-												</tr>
-												<tr>
-													<td>Item Two</td>
-													<td>Vis ac commodo adipiscing arcu aliquet.</td>
-													<td>19.99</td>
-												</tr>
-												<tr>
-													<td>Item Three</td>
-													<td> Morbi faucibus arcu accumsan lorem.</td>
-													<td>29.99</td>
-												</tr>
-												<tr>
-													<td>Item Four</td>
-													<td>Vitae integer tempus condimentum.</td>
-													<td>19.99</td>
-												</tr>
-												<tr>
-													<td>Item Five</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
-													<td>29.99</td>
-												</tr>
-											</tbody>
-											<tfoot>
-												<tr>
-													<td colspan="2"></td>
-													<td>100.00</td>
-												</tr>
-											</tfoot>
-										</table>
-									</div>
-
-									<h4>Alternate</h4>
-									<div class="table-wrapper">
-										<table class="alt">
-											<thead>
-												<tr>
-													<th>Name</th>
-													<th>Description</th>
-													<th>Price</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>Item One</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
-													<td>29.99</td>
-												</tr>
-												<tr>
-													<td>Item Two</td>
-													<td>Vis ac commodo adipiscing arcu aliquet.</td>
-													<td>19.99</td>
-												</tr>
-												<tr>
-													<td>Item Three</td>
-													<td> Morbi faucibus arcu accumsan lorem.</td>
-													<td>29.99</td>
-												</tr>
-												<tr>
-													<td>Item Four</td>
-													<td>Vitae integer tempus condimentum.</td>
-													<td>19.99</td>
-												</tr>
-												<tr>
-													<td>Item Five</td>
-													<td>Ante turpis integer aliquet porttitor.</td>
-													<td>29.99</td>
-												</tr>
-											</tbody>
-											<tfoot>
-												<tr>
-													<td colspan="2"></td>
-													<td>100.00</td>
-												</tr>
-											</tfoot>
-										</table>
-									</div>
-								</div>
-							</section>
-
-							<section>
-								<header>
-									<h3>Buttons</h3>
-								</header>
-								<div class="content">
-									<ul class="actions">
-										<li><a href="#" class="button primary">Primary</a></li>
-										<li><a href="#" class="button">Default</a></li>
-									</ul>
-									<ul class="actions">
-										<li><a href="#" class="button large">Large</a></li>
-										<li><a href="#" class="button">Default</a></li>
-										<li><a href="#" class="button small">Small</a></li>
-									</ul>
-									<ul class="actions">
-										<li><a href="#" class="button primary icon solid fa-download">Icon</a></li>
-										<li><a href="#" class="button icon solid fa-download">Icon</a></li>
-									</ul>
-									<ul class="actions">
-										<li><span class="button primary disabled">Disabled</span></li>
-										<li><span class="button disabled">Disabled</span></li>
-									</ul>
-								</div>
-							</section>
-
-							<section>
-								<header>
-									<h3>Form</h3>
-								</header>
-								<div class="content">
-									<form method="post" action="#">
-										<div class="fields">
-											<div class="field half">
-												<label for="demo-name">Name</label>
-												<input type="text" name="demo-name" id="demo-name" value="" placeholder="Jane Doe" />
-											</div>
-											<div class="field half">
-												<label for="demo-email">Email</label>
-												<input type="email" name="demo-email" id="demo-email" value="" placeholder="jane@untitled.tld" />
-											</div>
-											<div class="field">
-												<label for="demo-category">Category</label>
-												<select name="demo-category" id="demo-category">
-													<option value="">-</option>
-													<option value="1">Manufacturing</option>
-													<option value="1">Shipping</option>
-													<option value="1">Administration</option>
-													<option value="1">Human Resources</option>
-												</select>
-											</div>
-											<div class="field half">
-												<input type="radio" id="demo-priority-low" name="demo-priority" checked>
-												<label for="demo-priority-low">Low</label>
-											</div>
-											<div class="field half">
-												<input type="radio" id="demo-priority-high" name="demo-priority">
-												<label for="demo-priority-high">High</label>
-											</div>
-											<div class="field half">
-												<input type="checkbox" id="demo-copy" name="demo-copy">
-												<label for="demo-copy">Email me a copy</label>
-											</div>
-											<div class="field half">
-												<input type="checkbox" id="demo-human" name="demo-human" checked>
-												<label for="demo-human">Not a robot</label>
-											</div>
-											<div class="field">
-												<label for="demo-message">Message</label>
-												<textarea name="demo-message" id="demo-message" placeholder="Enter your message" rows="6"></textarea>
-											</div>
-										</div>
-										<ul class="actions">
-											<li><input type="submit" value="Send Message" class="primary" /></li>
-											<li><input type="reset" value="Reset" /></li>
-										</ul>
-									</form>
-								</div>
-							</section>
-
-						</div>
-					</section>
-				-->
-
-				<!-- Section -->
-					<section>
-						<header>
-							<h2>Get in touch</h2>
-						</header>
-						<div class="content">
-							<p><strong>Auctor commodo</strong> interdum et malesuada fames ac ante ipsum primis in faucibus. Pellentesque venenatis dolor imperdiet dolor mattis sagittis.</p>
-							<form>
-								<div class="fields">
-									<div class="field half">
-										<input type="text" name="name" id="name" placeholder="Name" />
-									</div>
-									<div class="field half">
-										<input type="email" name="email" id="email" placeholder="Email" />
-									</div>
-									<div class="field">
-										<textarea name="message" id="message" placeholder="Message" rows="7"></textarea>
-									</div>
-								</div>
-								<ul class="actions">
-									<li><input type="submit" value="Send Message" class="button primary" /></li>
-								</ul>
-							</form>
-						</div>
-						<footer>
-							<ul class="items">
-								<li>
-									<h3>Email</h3>
-									<a href="#">information@untitled.ext</a>
-								</li>
-								<li>
-									<h3>Phone</h3>
-									<a href="#">(000) 000-0000</a>
-								</li>
-								<li>
-									<h3>Address</h3>
-									<span>1234 Somewhere Road, Nashville, TN 00000</span>
-								</li>
-								<li>
-									<h3>Elsewhere</h3>
-									<ul class="icons">
-										<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-										<li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-										<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-										<li><a href="#" class="icon brands fa-linkedin-in"><span class="label">LinkedIn</span></a></li>
-										<li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-										<li><a href="#" class="icon brands fa-codepen"><span class="label">Codepen</span></a></li>
-									</ul>
-								</li>
-							</ul>
-						</footer>
-					</section>
-
-				<!-- Copyright -->
-					<div class="copyright">&copy; Untitled. All rights reserved. Design: <a href="https://html5up.net">HTML5 UP</a>.</div>
-
-			</div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-
-	</body>
+document.querySelector('.submit-btn').addEventListener('click', function() {
+  this.textContent = '✓ Gönderildi!';
+  this.style.background = '#0F6E56';
+  this.style.color = '#fff';
+  setTimeout(() => {
+    this.textContent = 'Gönder →';
+    this.style.background = '';
+    this.style.color = '';
+  }, 3000);
+});
+</script>
+</body>
 </html>
